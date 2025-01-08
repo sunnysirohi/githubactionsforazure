@@ -15,5 +15,4 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Login Confirmation
-        if: success()
         run: echo "Login Successful."

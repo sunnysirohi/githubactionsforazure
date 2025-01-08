@@ -24,4 +24,7 @@ jobs:
           #az appservice plan create --name myappserviceplan --resource-group "myresourcegroup" --sku F1 --location westus
 
       - name: Create the web app
-        run: az webapp create --name mywebappnew1 --resource-group "myresourcegroup" --plan myappserviceplan --runtime "NODE:18LTS"
+        #run: az webapp create --name mywebappnew1 --resource-group "myresourcegroup" --plan myappserviceplan --runtime "NODE:18LTS"
+
+      - name: Create a Azure vault
+        run: az keyvault create --name keyvsecret920 --resource-group "myresourcegroup" --location eastus

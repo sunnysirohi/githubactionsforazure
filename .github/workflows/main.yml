@@ -21,12 +21,12 @@ jobs:
 
       - name: Create App Service Plan
         run: |
-          az appservice plan create --name myappserviceplan1 --resource-group "myresourcegroup" --sku F1 --location centralus
+          az appservice plan create --name myappserviceplan1 --resource-group "myresourcegroup5" --sku F1 --location centralus
 
       - name: Create the web app
         run: az webapp create --name mywebappnew5 --resource-group "myresourcegroup5" --plan myappserviceplan1 --runtime "NODE:18LTS"
 
       - name: Create a Azure vault
         run: |
-          az keyvault create --name keyvsecret9207890 --resource-group "myresourcegroup" --location eastus
+          az keyvault create --name keyvsecret9207890 --resource-group "myresourcegroup5" --location eastus
           az keyvault list --output table

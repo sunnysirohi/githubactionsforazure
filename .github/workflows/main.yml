@@ -21,4 +21,7 @@ jobs:
 
       - name: Create App Service Plan
         run: |
-          az appservice plan create --name myappserviceplan --resource-group "myresourcegroup" --sku F1 --location westus
+          #az appservice plan create --name myappserviceplan --resource-group "myresourcegroup" --sku F1 --location westus
+
+      - name: Create the web app
+        run: az webapp create --name mywebapp --resource-group "myresourcegroup" --plan myappserviceplan --location westus --runtime "NODE|18-lts"

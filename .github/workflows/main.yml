@@ -28,5 +28,5 @@ jobs:
 
       - name: Create a Azure vault
         run: |
-          az keyvault create --name keyvsecret9207890 --resource-group "myresourcegroup5" --location eastus
+          az keyvault create --name keyvsecret920789046 --resource-group "myresourcegroup5" --location eastus
           az keyvault list --output table

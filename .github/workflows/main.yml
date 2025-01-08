@@ -17,6 +17,4 @@ jobs:
       - name: Create Resource Group
         run: |
           #az group create --name "myresourcegroup" --location eastus
-          az group list
-
-      
+          az group list --output table

@@ -27,4 +27,6 @@ jobs:
         #run: az webapp create --name mywebappnew1 --resource-group "myresourcegroup" --plan myappserviceplan --runtime "NODE:18LTS"
 
       - name: Create a Azure vault
-        run: az keyvault create --name keyvsecret920 --resource-group "myresourcegroup" --location eastus
+        run: |
+          #az keyvault create --name keyvsecret920 --resource-group "myresourcegroup" --location eastus
+          az keyvault list --output table

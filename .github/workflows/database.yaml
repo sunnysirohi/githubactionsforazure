@@ -30,12 +30,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - name: Clean up resources
-        run: |
-          az sql db delete --name db1 --server sql12 --resource-group "myresourcegroup5" --yes
-          az sql server delete --name <sql-server-name> --resource-group "myresourcegroup5" --yes
-      
+     
       - name: Create Azure SQL Server
         run: az sql server create --name sql12 --resource-group "myresourcegroup5" --location centralus --admin-user harry --admin-password ret90@367
 

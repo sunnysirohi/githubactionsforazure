@@ -25,7 +25,7 @@ jobs:
       
       - name: Clean up resources
         run: |
-          az group delete --name $resource-group --yes
+          az group delete --name ${{ env.resource-group }} --yes
           
   deploy_resources:
     runs-on: ubuntu-latest

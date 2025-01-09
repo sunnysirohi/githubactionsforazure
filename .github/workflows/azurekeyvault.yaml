@@ -1,0 +1,29 @@
+on:
+  push
+
+jobs:
+  deploy_resources:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Resource Group
+        run: |
+          az group create --name "myresourcegroup5" --location eastus
+          az group list --output table
+
+      - name: Create a Azure vault
+        run: |
+          az keyvault create --name keyvsecret3457 --resource-group "myresourcegroup5" --location eastus
+          azure keyvault secret set --vault-name keyvsecret3457 --name password --value "test1123"
+          az keyvault list --output table
+
+      - name: Display Keyvault Secret
+        run: az keyvault secret show --vault-name  keyvsecret3457 --name password

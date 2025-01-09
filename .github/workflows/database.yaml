@@ -17,7 +17,7 @@ jobs:
       - name: Clean up resources
         run: |
           az sql db delete --name db1 --server sql12 --resource-group "myresourcegroup5" --yes
-          az sql server delete --name <sql-server-name> --resource-group "myresourcegroup5" --yes
+          az sql server delete --name sql12 --resource-group "myresourcegroup5" --yes
           
   deploy_resources:
     runs-on: ubuntu-latest

@@ -21,6 +21,7 @@ jobs:
             --location eastus \
             --admin-user root \
             --admin-password password1
+            --enable-public-network false
 
       - name: Create Azure SQL Database
         run: az sql db create \

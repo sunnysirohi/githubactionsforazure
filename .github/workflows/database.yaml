@@ -33,19 +33,19 @@ jobs:
      
       - name: Create Azure SQL Server
         run: |
-          az sql server create --name mysql12 --resource-group "myresourcegroup5" --location centralus --admin-user harry --admin-password ret90@367
-          az sql server firewall-rule create --resource-group "myresourcegroup5" --server mysql12 -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+          az sql server create --name mysql12-dataserver --resource-group "myresourcegroup5" --location centralus --admin-user harry --admin-password ret90@367
+          az sql server firewall-rule create --resource-group "myresourcegroup5" --server mysql12-dataserver -n AllowYourIp --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
       - name: Create Azure SQL Database
         run: |
-          az sql db create --name db1 --resource-group "myresourcegroup5" --server mysql12 --sample-name AdventureWorksLT --edition GeneralPurpose --family Gen5 --capacity 2
+          az sql db create --name db1 --resource-group "myresourcegroup5" --server mysql12-dataserver --sample-name AdventureWorksLT --edition GeneralPurpose --family Gen5 --capacity 2
 
       - name: Get connection string
         id: connection-string
         run: |
-          echo "connection_string=$(az sql db show-connection-string --server mysql12 --name db1 --client ado.net)"
+          echo "connection_string=$(az sql db show-connection-string --server mysql12-dataserver --name db1 --client ado.net)"
     #outputs:
      # connection_string1: ${{ steps.connection-string.outputs.connection_string }}
     
       - name: Connect to Azure SQL Database
-        run: sqlcmd -S tcp:mysql12.database.windows.net -d db1 -U harry -P ret90@367 -Q "show database;"
+        run: sqlcmd -S tcp:mysql12-dataserver.database.windows.net -d db1 -U harry -P ret90@367 -Q "show database;"

@@ -15,36 +15,17 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       - name: Create Azure SQL Server
-        run: az sql server create \
-            --name sql1 \
-            --resource-group "myresourcegroup5" \
-            --location eastus \
-            --admin-user root \
-            --admin-password password1
-            --enable-public-network false
+        run: az sql server create --name sql1 --resource-group "myresourcegroup5" --location eastus --admin-user root --admin-password password1 --enable-public-network false
 
       - name: Create Azure SQL Database
-        run: az sql db create \
-            --name db1 \
-            --resource-group "myresourcegroup5" \
-            --server sql1 \
-            --database-edition "Basic"
+        run: az sql db create --name db1 --resource-group "myresourcegroup5" --server sql1 --database-edition "Basic"
 
       - name: Get connection string
         id: connection-string
         run: |
-          echo "connection_string=$(az sql db show-connection-string \
-            --server <sql-server-name> \
-            --name <sql-database-name> \
-            --client ado.net)"
+          echo "connection_string=$(az sql db show-connection-string --server <sql-server-name> --name <sql-database-name> --client ado.net)"
     #outputs:
      # connection_string1: ${{ steps.connection-string.outputs.connection_string }}
     
       - name: Connect to Azure SQL Database
-        run: sqlcmd -S tcp:sql1.database.windows.net \
-              -d db1
-              -U root
-              -P password1
-              -Q "show database;"
-              
-          
+        run: sqlcmd -S tcp:sql1.database.windows.net -d db1 -U root -P password1 -Q "show database;"
